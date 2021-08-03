@@ -1,1 +1,5 @@
+#ENVIRONMENT
+.env
+
+#OTHERS
 notes.md
