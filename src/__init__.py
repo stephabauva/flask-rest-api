@@ -1,5 +1,8 @@
 from flask import Flask
 import os
+from src.auth import auth
+from src.bookmarks import bookmarks
+# from src.database import db
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -8,17 +11,17 @@ def create_app(test_config=None):
 
         app.config.from_mapping(
             SECRET_KEY=os.environ.get("SECRET_KEY"),
+            # SQLAlCHEMY_DATABASE_URI=os.environ.get("SQLAlCHEMY_DATABASE_URI")
         )
 
     else:
         app.config.from_mapping(test_config)
 
-    @app.get("/")
-    def index():
-        return "hello world"
+    
+    # db.app = app
+    # db.init_app(app)
+    app.register_blueprint(auth)
+    app.register_blueprint(bookmarks)
 
-    @app.get("/hello")
-    def say_hello():
-        return {"mesage":"hello world"}
 
     return app
