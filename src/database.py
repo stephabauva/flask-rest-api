@@ -24,7 +24,7 @@ class Bookmark(db.Model):
     url=db.Column(db.Text, nullable=False)
     short_url=db.Column(db.String(3), nullable=True)
     visits=db.Column(db.Integer, default=0)
-    user_id=db.Column(db.Integer, db.ForeignKey('user'))
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
     created_at=db.Column(db.DateTime, default=datetime.now())
     updated_at=db.Column(db.DateTime, onupdate=datetime.now())
 
